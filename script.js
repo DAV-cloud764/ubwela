@@ -259,6 +259,52 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ═══════════════════════════════════════════════════════════════════════
+// FORMSPREE JSON SUBMISSION HANDLER
+// ═══════════════════════════════════════════════════════════════════════
+
+// Function to convert form data to JSON
+function formToJSON(form) {
+  const formData = new FormData(form);
+  const data = {};
+  
+  // Handle regular form fields
+  for (let [key, value] of formData.entries()) {
+    data[key] = value;
+  }
+  
+  // Handle additional fields that might not be in FormData
+  const inputs = form.querySelectorAll('input, select, textarea');
+  inputs.forEach(input => {
+    if (input.name && input.value) {
+      data[input.name] = input.value;
+    } else if (input.id && input.value && !data[input.id]) {
+      // Use id as fallback if name is not present
+      data[input.id] = input.value;
+    }
+  });
+  
+  return data;
+}
+
+// Function to submit form data as JSON to Formspree
+async function submitToFormspree(form, formData) {
+  const response = await fetch(form.action, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  });
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  
+  return response.json();
+}
+
+// ═══════════════════════════════════════════════════════════════════════
 // CONTACT FORM VALIDATION & SUBMISSION
 // ═══════════════════════════════════════════════════════════════════════
 
@@ -273,14 +319,15 @@ document.addEventListener("DOMContentLoaded", () => {
       note.style.fontWeight = '600';
     }
 
-    form.addEventListener('submit', function (e) {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
       note.textContent = '';
 
-      const name = form.name.value.trim();
-      const email = form.email.value.trim();
-      const subject = form.subject.value.trim();
-      const message = form.message.value.trim();
+      const name = form.name?.value?.trim() || form.querySelector('#name')?.value?.trim();
+      const email = form.email?.value?.trim() || form.querySelector('#email')?.value?.trim();
+      const subject = form.subject?.value?.trim() || form.querySelector('#subject')?.value?.trim();
+      const message = form.message?.value?.trim() || form.querySelector('#message')?.value?.trim();
+      const phone = form.phone?.value?.trim() || form.querySelector('#phone')?.value?.trim();
 
       if (!name || !email || !subject || !message) {
         showMessage('Please complete all required fields marked with *', false);
@@ -294,10 +341,87 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       showMessage('Sending message...', true);
-      setTimeout(function () {
-        showMessage('Your message has been sent. Thank you for contacting us!', true);
+      
+      try {
+        // Convert form data to JSON
+        const formData = formToJSON(form);
+        
+        // Submit to Formspree
+        await submitToFormspree(form, formData);
+        
+        showMessage('Your message has been sent successfully! Thank you for contacting us.', true);
         form.reset();
-      }, 900);
+      } catch (error) {
+        console.error('Form submission error:', error);
+        showMessage('There was an error sending your message. Please try again.', false);
+      }
+    });
+  }
+}());
+
+// ═══════════════════════════════════════════════════════════════════════
+// APPOINTMENT FORM SUBMISSION
+// ═══════════════════════════════════════════════════════════════════════
+
+(function () {
+  const appointmentForm = document.querySelector('.appointment-form');
+  
+  if (appointmentForm) {
+    appointmentForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      
+      // Get form elements
+      const nameInput = this.querySelector('#full-name');
+      const emailInput = this.querySelector('#email');
+      const phoneInput = this.querySelector('#phone');
+      const serviceInput = this.querySelector('#service');
+      const dateInput = this.querySelector('#date');
+      const timeInput = this.querySelector('#time');
+      const additionalInfoInput = this.querySelector('#additional-info');
+      
+      // Validate required fields
+      const name = nameInput?.value?.trim();
+      const email = emailInput?.value?.trim();
+      const phone = phoneInput?.value?.trim();
+      const service = serviceInput?.value?.trim();
+      const date = dateInput?.value?.trim();
+      const time = timeInput?.value?.trim();
+      
+      if (!name || !email || !phone || !service || !date || !time) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      // Validate email
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      
+      // Show loading state
+      const submitBtn = this.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.textContent = 'Booking...';
+      submitBtn.disabled = true;
+      
+      try {
+        // Convert form data to JSON
+        const formData = formToJSON(this);
+        
+        // Submit to Formspree
+        await submitToFormspree(this, formData);
+        
+        alert('Your appointment has been booked successfully! We will contact you within 24 hours to confirm.');
+        this.reset();
+      } catch (error) {
+        console.error('Appointment booking error:', error);
+        alert('There was an error booking your appointment. Please try again or contact us directly.');
+      } finally {
+        // Restore button state
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+      }
     });
   }
 }());
