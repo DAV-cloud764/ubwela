@@ -1712,6 +1712,8 @@ form button:active {
 
 #contact-right {
   padding: var(--space-3xl) var(--space-2xl);
+  margin-left: var(--space-2xl);
+  margin-right: var(--space-2xl);
   background: white;
 }
 
