@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Natural Herbal Clinic</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+</head>
+<body>
+  
+  <section id="home">
+    <header class="navbar">
+      <div class="logo">
+        <img src="Assets/logo.webp" alt="Family Herbal Clinic Logo" />
+        <div class="brand">
+          <h1>Natural Herbal Clinic</h1>
+          
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#home" data-i18n="nav-home">Home</a>
+        <a href="#about" data-i18n="nav-about">About</a>
+        <a href="#service" data-i18n="nav-services">Services</a>
+        <a href="#product" data-i18n="nav-products">Products</a>
+        <a href="#testimonials" data-i18n="nav-testimonials">Testimonials</a>
+        <a href="#contact" data-i18n="nav-contact">Contact</a>
+      </nav>
+      <div class="language-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="sw">SW</button>
+      </div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="action-buttons">
+        <button onclick="callNow()">
+          <i class="fas fa-phone"></i> <span data-i18n="btn-call-now">Call Now</span>
+        </button>
+        <button onclick="bookAppointment()">
+          <i class="fas fa-calendar-check"></i> <span data-i18n="btn-book-appointment">Book Appointment</span>
+        </button>
+      </div>
+    </header>
+
+  <section class="welcome-section">
+    <div class="welcome-content">
+      <h2 id="welcome-h2" data-i18n="hero-subtitle">Natural Healing Solutions</h2>
+      <h1 id="welcome-h1" data-i18n="hero-title">Welcome to Natural Herbal<br>Clinic</h1>
+      <p data-i18n="hero-description">Traditional African herbal medicine meets modern wellness.<br />
+         Experience natural healing for a healthier life.</p>
+      <div class="welcome-buttons">
+        <a href="#contact" class="btn" onclick="bookConsultation()" data-i18n="btn-book-consultation">Book Consultation</a>
+        <a href="#product" class="btn secondary" onclick="scrollToDave()" data-i18n="btn-explore-products">Explore Products</a>
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="feature-box">
+        <i class="fas fa-seedling"></i>
+        <p id="natural" data-i18n="feature-natural">100% Natural</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-user-md"></i>
+        <p id="expert" data-i18n="feature-expert">Expert Herbalists</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-check-circle"></i>
+        <p id="proven" data-i18n="feature-proven">Proven Results</p>
+      </div>
+    </div>
+  </section>
+  </section>
+
+  <section class="about-us" id="about">
+    <div class="top-intro">
+
+      <p class="section-label" id="about-label" data-i18n="about-label">About us</p>
+
+      <h1 id="about-h1" data-i18n="about-title">Your Partner in Natural Health</h1>
+
+      <p id="about-description" data-i18n="about-description">
+
+        At Natural Herbal Clinic, we blend traditional African herbal wisdom with modern wellness practices to provide holistic healing solutions.
+      </p>
+    </div>
+
+    <div class="about-section">
+      <div class="image-carousel">
+        <span class="arrow left">&#10094;</span>
+        <span class="arrow right">&#10095;</span>
+        <img src="Assets/me.webp" alt="Herbal Image 1" class="active">
+        <img src="Assets/a2.webp" alt="Herbal Image 2">
+        <img src="Assets/a3.webp" alt="Herbal Image 3">
+      </div>
+
+      <div class="text-content">
+        <p id="text-content-description">Natural Herbal Clinic is a sanctuary of healing where ancient African herbal traditions meet modern wellness. Our remedies are crafted with care, using time-tested ingredients that promote balance and vitality.</p>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">🌿</div>
+            <div class="feature-text">
+              <h4>Traditional Wisdom</h4>
+              <p>Centuries-old healing practices</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🌱</div>
+            <div class="feature-text">
+              <h4>Quality Assured</h4>
+              <p>Pure, tested ingredients</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🌸</div>
+            <div class="feature-text">
+              <h4>Personalized Care</h4>
+              <p>Tailored to your needs</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🍃</div>
+            <div class="feature-text">
+              <h4>Safe & Effective</h4>
+              <p>Proven healing results</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="highlights">
+        <div class="highlight-box">
+          <img src="Assets/person.webp" alt="Happy Clients" />
+          <h2 id="highlight-h2-1">5000+</h2>
+          <p id="highlight-p-1">Happy Clients</p>
+        </div>
+        <div class="highlight-box">
+          <img src="Assets/icons8-medal-50.webp" alt="Years Experience" />
+          <h2 id="highlight-h2-2">15+</h2>
+          <p id="highlight-p-2">Years Experience</p>
+        </div>
+        <div class="highlight-box">
+          <img src="Assets/icons8-heart-50.webp" alt="Natural Products" />
+          <h2 id="highlight-h2-3">100%</h2>
+          <p id="highlight-p-3">Natural Products</p>
+        </div>
+        <div class="highlight-box">
+          <img src="Assets/stethoscope-medical-tool.webp" alt="Herbal Remedies" />
+          <h2 id="highlight-h2-4">50+</h2>
+          <p id="highlight-p-4">Herbal Remedies</p>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="services-section" id="service">
+    <p class="section-label" id="service-label" data-i18n="services-label">Our Services</p>
+    <h2 id="services-h2" data-i18n="services-title">Natural Healing Solutions</h2>
+    <p class="intro" data-i18n="services-intro">Discover our comprehensive range of herbal treatments and wellness services.</p>
+
+    <div class="service-grid">
+      <!-- General Health -->
+      <div class="service-box">
+        <i class="fas fa-heart"></i>
+        <h3 id="general-health-h3">General Health Consultation</h3>
+        <p>Comprehensive health assessment and personalized herbal treatment plans.</p>
+        <ul>
+          <li>Full body assessment</li>
+          <li>Custom herbal formulas</li>
+          <li>Lifestyle guidance</li>
+        </ul>
+      </div>
+
+      <!-- Digestive Health -->
+      <div class="service-box">
+        <i class="fas fa-leaf"></i>
+        <h3 id="digestive-health-h3">Digestive Health</h3>
+        <p>Natural remedies for digestive issues, IBS, and gut health improvement.</p>
+        <ul>
+          <li>Stomach relief</li>
+          <li>Gut healing</li>
+          <li>Natural detox</li>
+        </ul>
+      </div>
+
+      <!-- Mental Wellness -->
+      <div class="service-box">
+        <i class="fas fa-brain"></i>
+        <h3 id="mental-wellness-h3">Mental Wellness</h3>
+        <p>Herbs for stress relief, anxiety management, and improved mental clarity.</p>
+        <ul>
+          <li>Stress reduction</li>
+          <li>Better sleep</li>
+          <li>Mental clarity</li>
+        </ul>
+      </div>
+
+      <!-- Energy & Vitality -->
+      <div class="service-box">
+        <i class="fas fa-bolt"></i>
+        <h3 id="energy-vitality-h3">Energy & Vitality</h3>
+        <p>Boost your energy levels naturally with adaptogenic herbs and tonics.</p>
+        <ul>
+          <li>Increased energy</li>
+          <li>Better stamina</li>
+          <li>Immune support</li>
+        </ul>
+      </div>
+
+      <!-- Immune System Support -->
+      <div class="service-box">
+        <i class="fas fa-shield-alt"></i>
+        <h3 id="immune-system-h3">Immune System Support</h3>
+        <p>Strengthen your immunity with powerful traditional African herbs.</p>
+        <ul>
+          <li>Disease prevention</li>
+          <li>Faster recovery</li>
+          <li>Overall wellness</li>
+        </ul>
+      </div>
+
+      <!-- Skin & Beauty -->
+      <div class="service-box">
+        <i class="fas fa-star"></i>
+        <h3 id="skin-beauty-h3">Skin & Beauty</h3>
+        <p>Natural solutions for healthy, glowing skin and beauty from within.</p>
+        <ul>
+          <li>Clear skin</li>
+          <li>Anti-aging</li>
+          <li>Natural glow</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="dave" id="product">
+<p class="section-label" id="product-recommender-label">Product Recommender</p>
+<h1 id="dave-h1">Find Your Perfect Herbal Solution</h1>
+<p id="find-solution">Answer a few questions to get a personalized herbal product recommendation.</p>
+
+<div class="card" id="step1">
+    <h3 id="dave-h3-step1">Question 1 of 3</h3>
+    <p id="dave-p-step1">What is your primary health concern?</p>
+    <button class="option-btn" onclick="nextStep(1, 'Digestive Issues')">Digestive Issues</button>
+    <button class="option-btn" onclick="nextStep(1, 'Low Energy & Fatigue')">Low Energy & Fatigue</button>
+    <button class="option-btn" onclick="nextStep(1, 'Weak Immune System')">Weak Immune System</button>
+    <button class="option-btn" onclick="nextStep(1, 'Stress & Anxiety')">Stress & Anxiety</button>
+    <button class="option-btn" onclick="nextStep(1, 'Skin Problems')">Skin Problems</button>
+</div>
+
+<div class="card hidden" id="step2">
+    <h3 id="dave-h3-step2">Question 2 of 3</h3>
+    <p id="dave-p-step2">How active are you in your daily life?</p>
+    <button class="option-btn" onclick="nextStep(2, 'Very Active')">Very Active</button>
+    <button class="option-btn" onclick="nextStep(2, 'Moderately Active')">Moderately Active</button>
+    <button class="option-btn" onclick="nextStep(2, 'Mostly Sedentary')">Mostly Sedentary</button>
+    <button class="back-btn" onclick="prevStep(2)">Back</button>
+</div>
+
+<div class="card hidden" id="step3">
+    <h3 id="dave-h3-step3">Question 3 of 3</h3>
+    <p id="dave-p-step3">Select your age range:</p>
+    <button class="option-btn" onclick="showRecommendation('18–35')">18–35</button>
+    <button class="option-btn" onclick="showRecommendation('36–55')">36–55</button>
+    <button class="option-btn" onclick="showRecommendation('56+')">56+</button>
+    <button class="back-btn" onclick="prevStep(3)">Back</button>
+</div>
+
+<div class="card hidden" id="recommendationSection">
+    <h3 id="dave-h3-recommendation">Your Herbal Recommendation</h3>
+    <p class="recommendation" id="recommendationText"></p>
+    <p id="dave-p-usage"><strong>Usage:</strong> Take 2 tablespoons daily after meals with warm water.</p>
+</div>
+
+<form id="contactForm" class="hidden">
+    <h3 id="order-now-h3">Order Now</h3>
+    <label for="name">Full Name</label>
+    <input type="text" id="name" placeholder="Full Name" required>
+    <label for="contact">Phone Number</label>
+    <input type="text" id="contact" placeholder="Phone Number" required>
+    <label for="region">Region</label>
+    <select id="region" required>
+        <option value="">Select Region</option>
+        <option value="Dar es Salaam">Dar es Salaam</option>
+        <option value="Dodoma">Dodoma</option>
+        <option value="Arusha">Arusha</option>
+        <option value="Mwanza">Mwanza</option>
+        <option value="Mbeya">Mbeya</option>
+        <option value="Other">Other Regions</option>
+    </select>
+    <label for="email">Email (optional)</label>
+    <input type="email" id="email" placeholder="Email (optional)">
+    <label for="recommendationBox">Recommendation</label>
+    <textarea id="recommendationBox" readonly></textarea>
+    <button type="submit">Submit</button>
+    <button type="button" id="cancelBtn" onclick="cancel()">Cancel</button>
+</form>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="section-header">
+    <h2 id="testimonials-h2" data-i18n="testimonials-title">Testimonials</h2>
+    <p id="subtitle" class="subtitle" data-i18n="testimonials-subtitle">What Our Clients Say</p>
+    <p id="description" class="description" data-i18n="testimonials-description">Real stories from people who have experienced natural healing.</p>
+  </div>
+
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="stars" id="stars1">★★★★★</div>
+      <p id="quote1" class="quote">“I suffered from chronic digestive issues for years. After just two weeks of using Tiba Asili's herbal remedies, I felt a significant improvement.”</p>
+      <p id="client1" class="client-info"><strong>Amina Hassan</strong> – Kinondoni, Dar es Salaam</p>
+      <span class="tag" id="tag1">Energy & Vitality</span>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="stars" id="stars2">★★★★★</div>
+      <p id="quote2" class="quote">“The energy tonic has changed my life! I used to feel exhausted all the time, but now I have the vitality to enjoy my days.”</p>
+      <p id="client2" class="client-info"><strong>John Mtambuka</strong> – Temeke, Dar es Salaam</p>
+      <span class="tag" id="tag2">Energy & Vitality</span>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="stars" id="stars3">★★★★★</div>
+      <p id="quote3" class="quote">“Finding Tiba Asili was a blessing. Their herbal remedies for stress and anxiety helped me achieve better mental clarity.”</p>
+      <p id="client3" class="client-info"><strong>Grace Kileo</strong> – Ilala, Dar es Salaam</p>
+      <span class="tag" id="tag3">Mental Wellness</span>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="stars" id="stars4">★★★★★</div>
+      <p id="quote4" class="quote">“My joint pain has reduced significantly since I started using their herbal balm. I feel more mobile and less stiff.”</p>
+      <p id="client4" class="client-info"><strong>Salim Mussa</strong> – Mbeya</p>
+      <span class="tag" id="tag4">Pain Relief</span>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="stars" id="stars5">★★★★★</div>
+      <p id="quote5" class="quote">“I had trouble sleeping for months. Their natural sleep remedy helped me rest peacefully again.”</p>
+      <p id="client5" class="client-info"><strong>Neema Joseph</strong> – Arusha</p>
+      <span class="tag" id="tag5">Sleep Support</span>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="stars" id="stars6">★★★★★</div>
+      <p id="quote6" class="quote">“Their detox tea helped me feel lighter and more energized. I recommend it to anyone looking to cleanse naturally.”</p>
+      <p id="client6" class="client-info"><strong>Peter Mwangosi</strong> – Mwanza</p>
+      <span class="tag" id="tag6">Detox & Cleanse</span>
+    </div>
+  </div>
+</section>
+
+<section class="appointment-booking">
+
+  <h2 id="appointment-h2" data-i18n="appointment-title">Book Appointment</h2>
+    <div class="appointment-container">
+      <h1 id="appointment-h1" data-i18n="appointment-heading">Schedule Your Consultation</h1>
+      <p id="appointment-p1" data-i18n="appointment-description">Take the first step towards natural healing. Book your personalized consultation today.</p>
+      <form class="appointment-form">
+        <div>
+          <label for="full-name" data-i18n="form-label-name">Full Name</label>
+          <input type="text" id="full-name" data-i18n-placeholder="form-placeholder-name" placeholder="Enter your full name" required autocomplete="off"/>
+        </div>
+        <div>
+          <label for="email" data-i18n="form-label-email">Email</label>
+          <input type="email" id="email" data-i18n-placeholder="form-placeholder-email" placeholder="your@email.com" required autocomplete="off"/>
+        </div>
+        <div>
+          <label for="phone" data-i18n="form-label-phone">Phone Number</label>
+          <input type="tel" id="phone" data-i18n-placeholder="form-placeholder-phone" placeholder="+255 XXX XXX XXX" required autocomplete="off"/>
+        </div>
+        <div>
+          <label for="service" data-i18n="form-label-service">Service</label>
+          <select id="service" required>
+            <option value="">Select a service</option>
+            <option value="massage">Massage Therapy</option>
+            <option value="nutrition">Nutrition Consultation</option>
+            <option value="acupuncture">Acupuncture</option>
+          </select>
+        </div>
+        <div>
+          <label for="date" data-i18n="form-label-date">Date</label>
+          <input type="date" id="date" required autocomplete="off"/>
+        </div>
+        <div>
+          <label for="time" data-i18n="form-label-time">Time</label>
+          <input type="time" id="time" data-i18n-placeholder="form-placeholder-time" placeholder="Select time" min="08:00" max="20:00" required autocomplete="off"/>
+        </div>
+        <div class="full-width">
+          <label for="additional-info" data-i18n="form-label-additional">Additional Information</label>
+          <textarea id="additional-info" data-i18n-placeholder="form-placeholder-additional" placeholder="Additional Information"></textarea>
+        </div>
+        <button class="full-width" type="submit" data-i18n="btn-book-appointment-submit" data-i18n="btn-book-appointment-submit">Book Appointment</button>
+        <p id="appointment-p2" class="confirmation-note" data-i18n="appointment-confirmation">We'll contact you within 24 hours to confirm your appointment.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- WhatsApp Floating Icon -->
+  <a href="https://wa.me/255620196710" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="Assets/talk.webp" alt="Costumer Support Icon" />
+  </a>
+
+
+  <section class="contact-wrap" id="contact" aria-label="Contact section">
+    <div id="contact-left">
+      <p id="contact-prelink" data-i18n="contact-prelink">Get In Touch</p>
+      <h1 id="contact-title" data-i18n="contact-title">Contact Us</h1>
+      <p id="contact-lead" data-i18n="contact-lead">Have questions? We are here to help you on your journey to natural wellness.</p>
+
+      <div id="contact-visit" aria-label="Visit our clinic">
+        <h3 id="visit-title" data-i18n="visit-title">Visit Our Clinic</h3>
+        <div id="visit-addr">Tabata, Baracuda</div>
+        <div id="visit-meta">Dar es Salaam, Tanzania</div>
+        <div id="contact-meta">
+          <div id="contact-phone"><strong>Phone</strong><a id="contact-phone-link" href="tel:+255620196710">+255 620 196 710</a></div>
+          <div id="contact-email"><strong>Email</strong><a id="contact-email-link" href="mailto:daviesfrances869@gmail.com">daviesfrances869@gmail.com</a></div>
+        </div>
+
+        <div id="contact-hours" aria-label="Working hours">
+          <div><b>Monday - Friday</b> 9:00 AM - 6:00 PM</div>
+          <div><b>Saturday</b> 9:00 AM - 2:00 PM</div>
+          <div><b>Sunday</b> Closed</div>
+        </div>
+
+        <div id="contact-map-wrap" title="Map showing Mwanamboka Plaza area">
+          <iframe
+            width="100%"
+            height="100%"
+            frameborder="0"
+            style="border:0;"
+            src="https://www.google.com/maps?q=Mwigo+Empire+Hall+and+Hotel,+Dar+es+Salaam&output=embed""
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <div id="contact-right">
+      <div id="contact-form-card">
+        <div id="form-title" data-i18n="form-title">Send Us a Message</div>
+        <div id="form-sub" data-i18n="form-subtitle">Fill the form below and we will reply as soon as possible.</div>
+
+        <form id="contactForm" novalidate>
+          <div id="form-row-1" style="margin-bottom:12px;">
+            <div id="form-col-1">
+              <label for="name" data-i18n="contact-form-name">Name <span id="name-required">*</span></label>
+              <input id="name" name="name" type="text" data-i18n-placeholder="contact-form-name-placeholder" placeholder="Full name" required autocomplete="off"/>
+            </div>
+            <div id="form-col-2">
+              <label for="email" data-i18n="contact-form-email">Email <span id="email-required">*</span></label>
+              <input id="email" name="email" type="email" data-i18n-placeholder="contact-form-email-placeholder" placeholder="you@example.com" required autocomplete="off" />
+            </div>
+          </div>
+
+          <div id="form-row-2" style="margin-bottom:12px;">
+            <label for="phone" data-i18n="contact-form-phone">Phone</label>
+            <input id="phone" name="phone" type="text" data-i18n-placeholder="contact-form-phone-placeholder" placeholder="+255 xxx xxx xxx" autocomplete="off"/>
+          </div>
+
+          <div id="form-row-3" style="margin-bottom:12px;">
+            <label for="subject" data-i18n="contact-form-subject">Subject <span id="subject-required">*</span></label>
+            <input id="subject" name="subject" type="text" data-i18n-placeholder="contact-form-subject-placeholder" placeholder="Reason for contact" required autocomplete="off"/>
+          </div>
+
+          <div id="form-row-4" style="margin-bottom:14px;">
+            <label for="message" data-i18n="contact-form-message">Message <span id="message-required">*</span></label>
+            <textarea id="message" name="message" data-i18n-placeholder="contact-form-message-placeholder" placeholder="Write your message here" required autocomplete="off"></textarea>
+          </div>
+
+          <div id="form-submit">
+            <button id="contact-btn" type="submit" data-i18n="btn-send-message">Send Message</button>
+            <div id="formNote" aria-live="polite"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <!-- Brand & Social -->
+    <div class="footer-brand">
+      <img src="Assets/logo.webp" alt="Family Herbal Clinic Logo" />
+      <h2 id="h2-footer">Natural Herbal Clinic</h2>
+      <p class="tagline">Natural Healing</p>
+      <p class="footer-brand-description">Your trusted partner in natural health and wellness. Experience the power of traditional African herbal medicine.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#service">Services</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#product">Products</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Our Services -->
+    <div class="footer-services">
+      <h3>Our Services</h3>
+      <ul>
+        <li><a href="#service">General Health Consultation</a></li>
+        <li><a href="#service">Digestive Health</a></li>
+        <li><a href="#service">Mental Wellness</a></li>
+        <li><a href="#service">Energy & Vitality</a></li>
+        <li><a href="#service">Immune Support</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-contact">
+      <h3>Contact Info</h3>
+      <p><i class="fas fa-map-marker-alt"></i> Tabata Baracuda, Dar es Salaam, Tanzania</p>
+      <p><i class="fas fa-phone"></i> <a href="tel:+255620196710">+255 620 196 710</a></p>
+      <p><i class="fas fa-envelope"></i> <a href="mailto:daviesfrances86@gmail.com">daviesfrances86@gmail.com</a></p>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <p id="footer-bottom-p">© 2026 Family Herbal Clinic. All rights reserved. Built with care for natural wellness.</p>
+    <div class="footer-meta">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <span>Website Developed by MLUE TECNOLOGY</span>
+    </div>
+  </div>
+
+
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
