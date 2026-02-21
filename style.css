@@ -523,6 +523,7 @@ p {
   .welcome-section {
     min-height: 70vh;
     padding: var(--space-2xl) var(--space-md);
+    background-attachment: scroll;
   }
 
   .features {
@@ -633,7 +634,7 @@ p {
 
 .text-content {
   flex: 1;
-  min-width: 300px;
+  min-width: min(300px, 100%);
 }
 
 .text-content p {
@@ -988,7 +989,8 @@ form {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   width: 100%;
-  max-width: 520px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 form h3 {
@@ -1007,6 +1009,7 @@ form label {
 
 form input, form select, form textarea {
   width: 100%;
+  box-sizing: border-box;
   padding: var(--space-md);
   margin-bottom: var(--space-md);
   border-radius: var(--radius-md);
@@ -1253,7 +1256,8 @@ form button:active {
 
 .appointment-form textarea {
   min-height: 140px;
-  width: 90%;
+  width: 100%;
+  box-sizing: border-box;
   resize: vertical;
   padding: var(--space-lg);
 }
@@ -1294,8 +1298,7 @@ form button:active {
 
 @media (max-width: 768px) {
   .appointment-booking {
-    height: 105vh;
-    overflow-y: auto;
+    height: auto;
     padding: var(--space-2xl) var(--space-lg);
   }
 
@@ -1327,8 +1330,7 @@ form button:active {
 
 @media (max-width: 480px) {
   .appointment-booking {
-    height: 105vh;
-    overflow-y: auto;
+    height: auto;
     padding: var(--space-lg);
   }
 
@@ -1712,13 +1714,20 @@ form button:active {
 
 #contact-right {
   padding: var(--space-3xl) var(--space-2xl);
-  margin-left: var(--space-2xl);
-  margin-right: var(--space-2xl);
   background: white;
 }
 
 #contact-form-card {
   max-width: 100%;
+}
+
+/* Center the contact form within its column with balanced spacing */
+#contact-right #contactForm {
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+  padding: var(--space-xl);
+  box-sizing: border-box;
 }
 
 #form-title {
