@@ -43,6 +43,19 @@
 }
 
 /* RESET & TYPOGRAPHY SYSTEM */
+
+/* 1. Universal box-sizing — eliminates padding/border conflicts on every element.
+      Without this, width:100% + padding causes inputs/containers to overflow their parents. */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Prevent all images from exceeding their container width on any viewport. */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -53,6 +66,8 @@ body {
   background-color: var(--color-light-bg);
   color: #2c2c2c;
   line-height: 1.6;
+  /* 3. Suppress horizontal scroll caused by any escaped element. */
+  overflow-x: hidden;
 }
 
 /* Typography Scale */
@@ -129,6 +144,9 @@ p {
 
 .logo img {
   height: 56px;
+  /* Restore explicit height overridden by global img rule */
+  width: auto;
+  max-width: none;
   transition: transform var(--transition-normal);
 }
 
@@ -359,6 +377,28 @@ p {
   }
 }
 
+/* 4. On very small screens (< 480px) collapse action buttons to icon-only to
+      prevent the navbar flex row from overflowing the viewport. */
+@media (max-width: 480px) {
+  .action-buttons button span[data-i18n] {
+    display: none;
+  }
+
+  .action-buttons button {
+    padding: var(--space-sm);
+    min-width: 36px;
+    justify-content: center;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .brand h1 {
+    font-size: 14px;
+  }
+}
+
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -493,7 +533,9 @@ p {
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   padding: var(--space-lg);
-  width: 200px;
+  /* 5. Replace fixed px width with a fluid equivalent.
+        min() keeps it at 200px on desktop but lets it fill 100% on narrow viewports. */
+  width: min(200px, 100%);
   text-align: center;
   border-radius: var(--radius-lg);
   color: white;
@@ -634,7 +676,11 @@ p {
 
 .text-content {
   flex: 1;
-  min-width: min(300px, 100%);
+  /* 6. min-width:0 overrides flex's implicit min-width:auto, preventing the flex
+        child from blowing out its container when text/content is wide. */
+  min-width: 0;
+  /* Soft lower bound — wraps to new row when container is narrower than 300px. */
+  width: min(300px, 100%);
 }
 
 .text-content p {
@@ -711,7 +757,9 @@ p {
 
 .highlight-box {
   text-align: center;
-  width: 160px;
+  /* 7. Fluid width: stays 160px on desktop, fills available space on mobile.
+        The wrapping flex parent (highlights) already has flex-wrap:wrap. */
+  width: min(160px, calc(50% - var(--space-lg)));
   padding: var(--space-lg);
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, white 0%, var(--color-cream) 100%);
@@ -790,7 +838,9 @@ p {
 
 .service-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* 8. min() clamps the minimum track width to 100% of the container when the
+        viewport is too narrow for 300px columns, eliminating grid overflow. */
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
   gap: var(--space-2xl);
   padding: 0;
   max-width: 1200px;
@@ -1098,7 +1148,9 @@ form button:active {
 
 .testimonial-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  /* 9. Same pattern as service-grid — prevents 320px min from forcing overflow
+        on viewports narrower than ~340px (320px column + grid padding). */
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
   gap: var(--space-2xl);
 }
 
@@ -1210,7 +1262,9 @@ form button:active {
   margin-top: var(--space-2xl);
   box-shadow: var(--shadow-lg);
   width: 100%;
-  max-width: 1400px;
+  /* 10. Was 1400px — far wider than its 900px parent, causing computed overflow.
+         100% respects the parent's constrained width at all breakpoints. */
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
@@ -1244,6 +1298,11 @@ form button:active {
   background: white;
   transition: all var(--transition-normal);
   font-family: inherit;
+  /* 11. Ensure individual fields cannot exceed their grid cell.
+         box-sizing:border-box is now global but kept explicit here for clarity. */
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 .appointment-form input:focus,
@@ -1290,7 +1349,9 @@ form button:active {
   text-align: center !important;
   padding: var(--space-lg) 0 0 0;
   margin: 0 auto;
-  white-space: nowrap;
+  /* 15. nowrap on a full-sentence creates a forced overflow on mobile.
+         Use normal wrapping on desktop too; the text is short enough. */
+  white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
@@ -1310,6 +1371,15 @@ form button:active {
     grid-template-columns: 1fr;
     padding: var(--space-lg);
     margin-top: var(--space-lg);
+    overflow: hidden;
+  }
+
+  .appointment-form input,
+  .appointment-form select,
+  .appointment-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
   }
 
   .appointment-form .full-width {
@@ -1341,6 +1411,15 @@ form button:active {
   .appointment-form {
     padding: var(--space-md);
     row-gap: var(--space-md);
+    overflow: hidden;
+  }
+
+  .appointment-form input,
+  .appointment-form select,
+  .appointment-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
   }
 
   .appointment-form textarea {
@@ -1402,7 +1481,8 @@ form button:active {
 
 .footer-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  /* 12. Prevent footer columns from enforcing 240px minimum on narrow viewports. */
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: var(--space-3xl);
   max-width: 1200px;
   margin: 0 auto;
@@ -1832,11 +1912,25 @@ form button:active {
 @media (max-width: 968px) {
   .contact-wrap {
     grid-template-columns: 1fr;
-    margin: var(--space-lg);
+    /* 13. Constrain horizontal margin so the card never pokes outside the viewport. */
+    margin: var(--space-lg) var(--space-md);
+    /* Ensure the card itself doesn't exceed the viewport width. */
+    max-width: calc(100vw - var(--space-md) * 2);
   }
 
   #contact-map-wrap {
     height: 280px;
+  }
+
+  /* 14. Reduce the heavy 48px horizontal padding on the right column at tablet/mobile
+         so the form inputs don't get squeezed into a tiny sliver or overflow. */
+  #contact-right {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+
+  #contact-right #contactForm {
+    padding: var(--space-lg);
+    max-width: 100%;
   }
 }
 
