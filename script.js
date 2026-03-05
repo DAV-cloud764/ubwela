@@ -184,14 +184,14 @@ function showRecommendation(age) {
     "Recommended Product: " + result + "\n" +
     "Usage: Take 2 tablespoons daily after meals with warm water.";
 
-  document.getElementById("contactForm").classList.remove("hidden");
+  document.getElementById("orderForm").classList.remove("hidden");
 }
 
 function cancel() {
   userSelections = {};
   currentStep = 1;
   document.getElementById("recommendationSection").classList.add("hidden");
-  document.getElementById("contactForm").classList.add("hidden");
+  document.getElementById("orderForm").classList.add("hidden");
   document.getElementById("step1").classList.remove("hidden");
   document.getElementById("step2").classList.add("hidden");
   document.getElementById("step3").classList.add("hidden");
@@ -354,6 +354,48 @@ async function submitToFormspree(form, formData) {
       } catch (error) {
         console.error('Form submission error:', error);
         showMessage('There was an error sending your message. Please try again.', false);
+      }
+    });
+  }
+}());
+
+// ═══════════════════════════════════════════════════════════════════════
+// ORDER FORM SUBMISSION (Product Recommender section)
+// ═══════════════════════════════════════════════════════════════════════
+
+(function () {
+  const orderForm = document.getElementById('orderForm');
+
+  if (orderForm) {
+    orderForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const submitBtn = orderForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Sending…';
+      submitBtn.disabled = true;
+
+      try {
+        const response = await fetch(orderForm.action, {
+          method: 'POST',
+          body: new FormData(orderForm),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          alert('We have received your order, our team is working to reach you out soon.');
+          orderForm.reset();
+          // Reset quiz state back to step 1
+          cancel();
+        } else {
+          alert('There was a problem submitting your order. Please try again.');
+        }
+      } catch (err) {
+        console.error('Order form submission error:', err);
+        alert('There was a problem submitting your order. Please try again.');
+      } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
       }
     });
   }

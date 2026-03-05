@@ -186,9 +186,6 @@
         <button onclick="callNow()">
           <i class="fas fa-phone"></i> <span data-i18n="btn-call-now">Call Now</span>
         </button>
-        <button onclick="bookAppointment()">
-          <i class="fas fa-calendar-check"></i> <span data-i18n="btn-book-appointment">Book Appointment</span>
-        </button>
       </div>
     </header>
 
@@ -422,14 +419,15 @@
     <p id="dave-p-usage"><strong>Usage:</strong> Take 2 tablespoons daily after meals with warm water.</p>
 </div>
 
-<form id="contactForm" class="hidden">
+<form id="orderForm" class="hidden" method="POST" action="https://formspree.io/f/xnjbzynl">
+    <input type="hidden" name="_subject" value="New Herbal Product Order">
     <h3 id="order-now-h3">Order Now</h3>
-    <label for="name">Full Name</label>
-    <input type="text" id="name" placeholder="Full Name" required>
-    <label for="contact">Phone Number</label>
-    <input type="text" id="contact" placeholder="Phone Number" required>
-    <label for="region">Region</label>
-    <select id="region" required>
+    <label for="order-name">Full Name</label>
+    <input type="text" id="order-name" name="fullName" placeholder="Full Name" required>
+    <label for="order-contact">Phone Number</label>
+    <input type="text" id="order-contact" name="phone" placeholder="Phone Number" required>
+    <label for="order-region">Region</label>
+    <select id="order-region" name="region" required>
         <option value="">Select Region</option>
         <option value="Dar es Salaam">Dar es Salaam</option>
         <option value="Dodoma">Dodoma</option>
@@ -438,10 +436,10 @@
         <option value="Mbeya">Mbeya</option>
         <option value="Other">Other Regions</option>
     </select>
-    <label for="email">Email (optional)</label>
-    <input type="email" id="email" placeholder="Email (optional)">
+    <label for="order-email">Email (optional)</label>
+    <input type="email" id="order-email" name="email" placeholder="Email (optional)">
     <label for="recommendationBox">Recommendation</label>
-    <textarea id="recommendationBox" readonly></textarea>
+    <textarea id="recommendationBox" name="recommendation" readonly></textarea>
     <button type="submit">Submit</button>
     <button type="button" id="cancelBtn" onclick="cancel()">Cancel</button>
 </form>

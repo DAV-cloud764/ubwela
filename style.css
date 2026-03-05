@@ -317,7 +317,7 @@ p {
 
   .hamburger {
     display: block;
-    order: 2;
+    order: 4;
   }
 
   .logo {
@@ -326,7 +326,12 @@ p {
   }
 
   .action-buttons {
+    order: 2;
     gap: var(--space-sm);
+  }
+
+  .language-toggle {
+    order: 3;
   }
 
   .action-buttons button {
